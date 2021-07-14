@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.0.1")
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.8.0-M1'
+}
+
+test {
+    useJUnitPlatform { includeTags("Add") }
+    failFast = true
+}
+
+test {
+    useJUnitPlatform { includeTags("Sub") }
+    failFast = true
+}
+
+test {
+    useJUnitPlatform { includeTags("Mul") }
+    failFast = true
+}
+
+test {
+    useJUnitPlatform { includeTags("Div") }
+    failFast = true
+}
+
