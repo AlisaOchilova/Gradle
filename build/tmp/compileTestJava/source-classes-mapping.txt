@@ -1,4 +1,6 @@
-ProgramTest.java
- ProgramTest
-DivisionTest.java
- DivisionTest
+homework8/TestsRegex.java
+ homework8.TestsRegex
+homework6/DivisionTest.java
+ homework6.DivisionTest
+homework6/ProgramTest.java
+ homework6.ProgramTest
