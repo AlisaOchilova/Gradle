@@ -66,7 +66,7 @@ public class User {
 
 
 
-    private String generateRandomDate(){
+    public String generateRandomDate(){
         LocalDate from = LocalDate.of(1919, 1, 1);
         LocalDate to = LocalDate.of(2021, 1, 1);
         long days = from.until(to, ChronoUnit.DAYS);
@@ -75,29 +75,29 @@ public class User {
         return from.plusDays(randomDays).format(formatter);
     }
 
-    private String generateRandomName(){
+    public String generateRandomName(){
         String[] root = {"Богдан", "Гончар", "Мельник", "Сидор",  "Петр", "Герасим", "Лис", "Александр", "Тихон"};
         String [] suf = {"ов", "ев", "ёв", "ын", "инский", "ицкий", "ый", "ой"};
         String [] sof = {"ович", "овна"};
         return root[new Random().nextInt(root.length)] +
-                root[new Random().nextInt(root.length)] + sof[new Random().nextInt(root.length)] +
-                root[new Random().nextInt(root.length)] + suf[new Random().nextInt(root.length)];
+                root[new Random().nextInt(root.length)] + sof[new Random().nextInt(sof.length)] +
+                root[new Random().nextInt(root.length)] + suf[new Random().nextInt(suf.length)];
     }
 
 
 
-    private LocalDateTime generateRandomRegistrationDate(){
+    public LocalDateTime generateRandomRegistrationDate(){
        return  LocalDateTime.now();
     }
 
-    private String generateRandomLogin(int count){
+    public String generateRandomLogin(int count){
         Random rand = new Random();
         return RandomStringUtils.randomAlphabetic(rand.nextInt((count) + 1));
     }
 
-    private String generateRandomPassword(int count) {
+    public String generateRandomPassword(int count) {
 
-        String CHAR_LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
+        String CHAR_LOWERCASE = "йцукенгшщзхъфывапролджэячсмитьбю";
         String CHAR_UPPERCASE = CHAR_LOWERCASE.toUpperCase();
         String DIGIT = "0123456789";
         String SPECIALS = "!@#&()–[{}]:;',?/*~$^+=<>";
