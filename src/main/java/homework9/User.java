@@ -1,21 +1,25 @@
-package homework8;
+package homework9;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class User {
+public class User implements Serializable {
     public String name; //фио
     public String birthDay; // Дата в виде года 1991-01-01
     public LocalDateTime registrationDate; //Дата в виде 2020-01-01Т00:00:00
     public String login; //6 знаков алфавитно-числовой на латинице
     public String password;//10 знаков алфавитно-числовой на латинице
-   // public Address direction;
+    public Address direction;
 
     public User(String name, String  birthDay, LocalDateTime registrationDate, String login, String password) {
         this.name = name;
@@ -25,9 +29,14 @@ public class User {
         this.password = password;
     }
 
-   // public void setHomeAddress(Address direction) {
-  //      this.direction = direction;
- //   }
+    public void setDirection(Address direction) {
+        this.direction = direction;
+    }
+
+    public String getDirection() {
+        return direction.toString();
+    }
+
 
     public User() {
         name = generateRandomName();
@@ -35,6 +44,13 @@ public class User {
         registrationDate = generateRandomRegistrationDate();
         login = generateRandomLogin(6);
         password = generateRandomPassword(10);
+    }
+
+    public static List<User> generateUsers(int count){
+        List<User> users = new ArrayList<>(Collections.emptyList());
+        for (int i=1; i<=count; i++)
+            users.add(new User());
+        return users;
     }
 
     public String  getName(){
@@ -92,7 +108,7 @@ public class User {
 
 
     public LocalDateTime generateRandomRegistrationDate(){
-       return  LocalDateTime.now();
+        return  LocalDateTime.now();
     }
 
     public String generateRandomLogin(int count){
@@ -122,5 +138,3 @@ public class User {
         return password.toString();
     }
 }
-
-
