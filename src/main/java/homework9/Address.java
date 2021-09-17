@@ -4,11 +4,11 @@ package homework9;
 import java.util.Random;
 
 public class Address {
-    public String city;
-    public String street;
-    public String house;
-    public int appartment;
-    public Random random = new Random();
+    private String city;
+    private String street;
+    private String house;
+    private int appartment;
+    private transient Random random = new Random();
 
     public Address() {
         String[] cities = {"Москва", "Санкт-Петербург", " Новосибирск", "Екатеринбург", "Казань", "Нижний Новгород", "Челябинск"};
@@ -32,5 +32,21 @@ public class Address {
     @Override
     public String toString() {
         return String.format( " %s,%s,%s,%s",city, street, house, appartment);
+    }
+
+    public String getCity() {
+        return this.city;
+    }
+
+    public String getStreet() {
+        return this.street;
+    }
+
+    public String getHouse() {
+        return this.house;
+    }
+
+    public int getAppartment() {
+        return this.appartment;
     }
 }

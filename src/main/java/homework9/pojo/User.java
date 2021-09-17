@@ -1,6 +1,9 @@
-package homework9;
+package homework9.pojo;
 
+import homework9.Address;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -13,20 +16,28 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+@Root
 public class User implements Serializable {
-    public String name; //фио
-    public String birthDay; // Дата в виде года 1991-01-01
-    public LocalDateTime registrationDate; //Дата в виде 2020-01-01Т00:00:00
-    public String login; //6 знаков алфавитно-числовой на латинице
-    public String password;//10 знаков алфавитно-числовой на латинице
-    public Address direction;
+    @Element
+    private String name; //фио
+    @Element
+    private String birthday; // Дата в виде года 1991-01-01
+    @Element
+    private String registrationDate; //Дата в виде 2020-01-01Т00:00:00
+    @Element
+    private String login; //6 знаков алфавитно-числовой на латинице
+    @Element
+    private String password;//10 знаков алфавитно-числовой на латинице
+    @Element
+    private Address direction;
 
-    public User(String name, String  birthDay, LocalDateTime registrationDate, String login, String password) {
-        this.name = name;
-        this.birthDay = birthDay;
-        this.registrationDate = registrationDate;
-        this.login = login;
-        this.password = password;
+    public User() {
+        this.name = generateRandomName();
+        this.birthday = birthDateGenerator();
+        this.registrationDate = generateRegistrationDate();
+        this.login = generateRandomLogin(6);
+        this.password = generateRandomPassword(10);
+        this.direction = new Address();
     }
 
     public void setDirection(Address direction) {
@@ -37,16 +48,7 @@ public class User implements Serializable {
         return direction.toString();
     }
 
-
-    public User() {
-        name = generateRandomName();
-        birthDay = generateRandomDate();
-        registrationDate = generateRandomRegistrationDate();
-        login = generateRandomLogin(6);
-        password = generateRandomPassword(10);
-    }
-
-    public static List<User> generateUsers(int count){
+    public List<User> getGenerateUsers(int count){
         List<User> users = new ArrayList<>(Collections.emptyList());
         for (int i=1; i<=count; i++)
             users.add(new User());
@@ -57,28 +59,13 @@ public class User implements Serializable {
         return name;
     }
 
-    public String  getBirthDay(){
-        return birthDay;
-    }
-
-    public LocalDateTime getRegistrationDate(){
-        return registrationDate;
-    }
-
-    public String  getLogin(){
-        return login;
-    }
-
-    public String  getPassword(){
-        return password;
-    }
 
 
     @Override
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
-                ", birthDay=" + birthDay +
+                ", birthDay=" + birthday +
                 ", registrationDate=" + registrationDate +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
@@ -86,14 +73,13 @@ public class User implements Serializable {
     }
 
 
-
-    public String generateRandomDate(){
-        LocalDate from = LocalDate.of(1919, 1, 1);
-        LocalDate to = LocalDate.of(2021, 1, 1);
-        long days = from.until(to, ChronoUnit.DAYS);
+    public String birthDateGenerator(){
+        LocalDate start = LocalDate.now().minus(102, ChronoUnit.YEARS);
+        LocalDate end = LocalDate.now();
+        long days = start.until(end, ChronoUnit.DAYS);
         long randomDays = ThreadLocalRandom.current().nextLong(days + 1);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return from.plusDays(randomDays).format(formatter);
+        return start.plusDays(randomDays).format(formatter);
     }
 
     public String generateRandomName(){
@@ -107,8 +93,9 @@ public class User implements Serializable {
 
 
 
-    public LocalDateTime generateRandomRegistrationDate(){
-        return  LocalDateTime.now();
+    public String generateRegistrationDate(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDateTime.now().format(formatter);
     }
 
     public String generateRandomLogin(int count){
@@ -137,4 +124,7 @@ public class User implements Serializable {
 
         return password.toString();
     }
+
+
+
 }

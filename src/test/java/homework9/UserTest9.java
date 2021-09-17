@@ -1,10 +1,10 @@
-package homework9;
+/*package homework9;
 
-import java.io.FileWriter;
-import java.io.Writer;
+import homework9.pojo.User;
+
 import java.util.List;
 
-public class UserTest {
+public class UserTest9 {
     public static void main(String[] args) {
         List<User> users = User.generateUsers(10);
 //        Writer writer = new FileWriter();
@@ -14,3 +14,4 @@ public class UserTest {
         writer.writeAddressToFile(users);
     }
 }
+*/

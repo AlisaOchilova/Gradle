@@ -1,8 +1,12 @@
-homework8/UserTests.java
- homework8.UserTests
 homework6/ProgramTest.java
  homework6.ProgramTest
-homework6/DivisionTest.java
- homework6.DivisionTest
+homework8/UserTests.java
+ homework8.UserTests
 homework8/Person.java
  homework8.Person
+homework6/DivisionTest.java
+ homework6.DivisionTest
+homework9/UserTest9.java
+ homework9.UserTest9
+homework9/UserTests10.java
+ homework9.UserTests10

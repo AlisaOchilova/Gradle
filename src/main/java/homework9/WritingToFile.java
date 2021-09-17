@@ -1,5 +1,7 @@
 package homework9;
 
+import homework9.pojo.User;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
