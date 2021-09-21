@@ -1,9 +1,10 @@
 package homework9;
 
 import homework9.pojo.User;
-import homework9.pojo.Users;
 import homework9.utils.JsonMapper;
 import homework9.utils.Mapper;
+import homework9.utils.XMLMapper;
+import homework9.pojo.Users;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +21,15 @@ public class UserTests10 {
     }
 
     @Test
+    void userXML() throws Exception {
+        Mapper<User> mapper = new XMLMapper(this.user);
+        String userString = mapper.serialize();
+        User deserialized = (User)mapper.deserialize(userString);
+        System.out.println(userString);
+        Assertions.assertEquals(this.user.toString(), deserialized.toString());
+    }
+
+    @Test
     void userJSON() throws Exception {
         Mapper<User> mapper = new JsonMapper(this.user);
         String jsonString = mapper.serialize();
@@ -27,6 +37,14 @@ public class UserTests10 {
         Assertions.assertEquals(this.user.toString(), deserialized.toString());
     }
 
+    @Test
+    void userListXML() throws Exception {
+        Mapper<Users> mapper = new XMLMapper(this.users);
+        String userListString = mapper.serialize();
+        Users deserialized = (Users)mapper.deserialize(userListString);
+        System.out.println(userListString);
+        Assertions.assertEquals(4, deserialized.getUsers().size());
+    }
 
     @Test
     void userListJSON() throws Exception {
